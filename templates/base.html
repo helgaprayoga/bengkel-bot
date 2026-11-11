@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Deskripsi singkat untuk tab browser dan mesin pencari. -->
+  <meta name="description" content="BengkelBot: chatbot diagnosis awal kerusakan sepeda motor dan dasbor adminnya.">
+  <meta name="theme-color" content="#1f2937">
+  <title>{% block title %}BengkelBot{% endblock %}</title>
+  <!-- Satu stylesheet dipakai bersama oleh halaman chat, admin, dan error. -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+  {% block content %}{% endblock %}
+  {% block scripts %}{% endblock %}
+</body>
+</html>

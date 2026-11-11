@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}{{ bot_name }}: Diagnosis Awal Kerusakan Motor{% endblock %}
+{% block body_class %}halaman-chat{% endblock %}
+
+{% block content %}
+<main class="chat-card">
+  <!-- Header memperkenalkan bot dan menyediakan tombol hapus riwayat. -->
+  <header class="chat-header">
+    <div class="avatar" aria-hidden="true">
+      <!-- Ikon kunci pas sederhana, tidak bergantung pada font emoji. -->
+      <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+        <path d="M14.7 6.3a4.5 4.5 0 0 0-5.9 5.9L3 18l3 3 5.8-5.8a4.5 4.5 0 0 0 5.9-5.9l-2.3 2.3-2.4-.6-.6-2.4 2.3-2.3z"/>
+      </svg>
+    </div>
+    <div class="judul">
+      <h1>{{ bot_name }}</h1>
+      <p>Diagnosis awal kerusakan sepeda motor</p>
+    </div>
+    <button type="button" id="btn-clear" class="tombol-kecil">Hapus riwayat</button>
+  </header>
+
+  <!-- Disclaimer keselamatan selalu terlihat sebelum pengguna bertanya. -->
+  <p class="disclaimer">{{ disclaimer }}</p>
+
+  <!-- Sapaan dibaca chat.js lewat data-greeting; teks ditampilkan dengan textContent. -->
+  <div id="messages" class="messages" aria-live="polite"
+       data-greeting="{{ greeting }}"></div>
+
+  <!-- Status dipakai untuk pesan "sedang mengirim" atau galat jaringan. -->
+  <p id="chat-status" class="status" role="status" aria-live="polite"></p>
+
+  <!-- Chip berisi contoh pertanyaan dari theme JSON. -->
+  <div id="suggestions" class="suggestions">
+    {% for s in suggestions %}
+    <button type="button" class="chip">{{ s }}</button>
+    {% endfor %}
+  </div>
+
+  <!-- Form menangani pengiriman pesan lewat JavaScript. -->
+  <form id="chat-form" class="chat-form" autocomplete="off">
+    <input id="chat-input" type="text" maxlength="500" required
+           placeholder="Ceritakan keluhan motormu..." aria-label="Pesan">
+    <button type="submit" id="btn-send">Kirim</button>
+  </form>
+
+  <!-- Mode belajar menampilkan intent dan skor untuk tiap jawaban bot. -->
+  <label class="belajar">
+    <input type="checkbox" id="mode-belajar">
+    Mode belajar (tampilkan intent dan skor)
+  </label>
+
+  <noscript>
+    <p class="status status-galat">JavaScript dibutuhkan agar chat bisa berjalan.</p>
+  </noscript>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+{% endblock %}

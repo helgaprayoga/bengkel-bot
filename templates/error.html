@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}{{ kode }}: {{ judul }}{% endblock %}
+{% block body_class %}halaman-galat{% endblock %}
+
+{% block content %}
+<!-- Halaman galat dipakai untuk 403, 404, dan 500. -->
+<main class="galat">
+  <p class="kode-galat">{{ kode }}</p>
+  <h1>{{ judul }}</h1>
+  <p>{{ pesan }}</p>
+  <a class="tombol-kecil" href="{{ url_for('index') }}">Kembali ke chat</a>
+</main>
+{% endblock %}

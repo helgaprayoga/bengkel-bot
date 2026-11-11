@@ -1,0 +1,5 @@
+# Framework web untuk halaman chat dan dashboard admin.
+Flask>=3.0
+
+# Pengujian otomatis mesin, database, dan endpoint web.
+pytest>=8

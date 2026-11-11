@@ -1,0 +1,74 @@
+kalimat,intent
+mtr gue susah banget dinyalain pagi pagi,susah_hidup
+distarter bunyinya cuma cek cek terus,susah_hidup
+motornya ga mau nyala kak,susah_hidup
+motor nggak bisa distarter sama sekali,susah_hidup
+kok motor saya tiba-tiba mati di tengah jalan,mati_mendadak
+mesin sering mati sendiri kalo lagi macet,mati_mendadak
+gasnya brebet pas lagi nanjak,brebet
+tarikan motor jadi berat banget,brebet
+tenaga motor kayak ilang,brebet
+mesin tersendat sendat kalau digas,brebet
+bensin cepet banget abis akhir akhir ini,boros_bensin
+kenapa konsumsi bensin motor saya naik terus,boros_bensin
+rem depan blong gimana nih,rem
+tuas rem saya dalem banget,rem
+rem bunyi cit cit pas ditekan,rem
+mesin motor kepanasan pas macet,overheat
+suhu mesin naik terus gimana,overheat
+knalpot ngeluarin asap putih tebel,asap_knalpot
+asapnya item banget dari knalpot,asap_knalpot
+knalpot motor saya ngebul biru,asap_knalpot
+ada suara aneh dari mesin kayak tek tek,bunyi_kasar
+rantai bunyi kletek kletek,bunyi_kasar
+lampu depan motor redup banget,lampu_aki
+aki gampang abis padahal baru,lampu_aki
+klakson motor kok suaranya lemah,lampu_aki
+stang goyang kalo ngebut,getaran
+motor oleng pas kecepatan tinggi,getaran
+ganti oli tuh tiap berapa kilometer,ganti_oli
+kapan waktu yang pas buat servis rutin,jadwal_servis
+jadwal ganti busi,jadwal_servis
+ban motor idealnya diisi angin berapa psi,tekanan_ban
+halo kak,salam
+selamat siang bengkelbot,salam
+makasih ya bang,terima_kasih
+oke dadah,pamit
+siapa presiden indonesia,fallback
+resep nasi goreng enak,fallback
+besok hujan nggak,fallback
+berapa harga motor baru,fallback
+cara menghitung luas lingkaran,fallback
+permisi mau tanya,salam
+oke makasih infonya,terima_kasih
+sip terima kasih,terima_kasih
+oke saya pamit dulu,pamit
+sudah dulu ya kak,pamit
+motor saya gak mau nyala,susah_hidup
+pagi pagi motor susah nyala,susah_hidup
+busi basah,susah_hidup
+mesin tiba tiba mati sendiri,mati_mendadak
+matot di tengah jalan,mati_mendadak
+motor brebet kalau digas,brebet
+motor lemas pas nanjak,brebet
+karburator kotor,brebet
+motor saya nggak irit,boros_bensin
+konsumsi bbm naik terus,boros_bensin
+rem,rem
+rem terasa kosong kalau diinjak,rem
+motor overheat di jalan macet,overheat
+indikator suhu naik,overheat
+knalpot ngebul putih,asap_knalpot
+asap hitam keluar dari knalpot,asap_knalpot
+rantai kendor,bunyi_kasar
+mesin berisik,bunyi_kasar
+kelistrikan motor bermasalah,lampu_aki
+lampu speedometer mati,lampu_aki
+motor bergetar di kecepatan tinggi,getaran
+oli,ganti_oli
+kapan ganti busi,jadwal_servis
+ban,tekanan_ban
+harga hp terbaru,fallback
+resep kue bolu,fallback
+cara membuat kopi,fallback
+cuaca hari ini bagaimana,fallback

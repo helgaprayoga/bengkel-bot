@@ -1,0 +1,141 @@
+{
+  "id": "bengkel",
+  "bot_name": "BengkelBot",
+  "greeting": "Halo! Saya {nama_bot}, asisten diagnosis awal kerusakan motor. Ceritakan keluhan motormu, misalnya: motor susah hidup.",
+  "disclaimer": "Hasil hanya perkiraan awal dan bukan pengganti pemeriksaan montir. Untuk rem, mesin panas, dan getaran, segera ke bengkel.",
+  "suggestions": ["Motor susah hidup", "Rem terasa dalam", "Mesin cepat panas", "Kapan ganti oli?"],
+  "fallback": [
+    "Maaf, saya belum paham keluhannya. Coba ceritakan gejalanya, misalnya: motor susah hidup, rem dalam, mesin panas, asap knalpot, atau kapan ganti oli.",
+    "Hmm, itu di luar yang saya kuasai. Saya hanya membantu diagnosis awal motor. Coba tanyakan soal mesin, rem, kelistrikan, bunyi aneh, atau perawatan rutin."
+  ],
+  "intents": [
+    {
+      "tag": "salam",
+      "patterns": ["halo", "hai", "hai bot", "hallo", "selamat pagi", "selamat siang", "selamat sore", "selamat malam", "permisi bengkelbot", "permisi", "assalamualaikum", "halo bot", "permisi mau tanya", "selamat pagi semua"],
+      "responses": [
+        "Halo! Saya {nama_bot}, asisten diagnosis awal kerusakan motor. Ceritakan keluhan motormu, misalnya: motor susah hidup.",
+        "Hai! {nama_bot} di sini. Apa keluhan motormu hari ini? Sebutkan gejalanya, misalnya bunyi aneh, asap, atau rem."
+      ]
+    },
+    {
+      "tag": "terima_kasih",
+      "patterns": ["makasih", "terima kasih", "thanks", "thank you", "mantap", "oke makasih", "makasih banyak", "makasih infonya", "oke terima kasih", "sip makasih", "terima kasih banyak"],
+      "responses": [
+        "Sama-sama! Hati-hati di jalan.",
+        "Senang bisa membantu. Kalau ada keluhan lain, tanya saja."
+      ]
+    },
+    {
+      "tag": "pamit",
+      "patterns": ["dadah", "bye", "sampai jumpa", "sudah cukup", "saya pamit dulu", "sudah segitu saja", "pamit", "keluar dulu", "pergi dulu", "sudah dulu"],
+      "responses": [
+        "Terima kasih sudah memakai {nama_bot}. Jangan lupa servis berkala dan hati-hati di jalan!",
+        "Sampai jumpa! Semoga motormu sehat selalu."
+      ]
+    },
+    {
+      "tag": "susah_hidup",
+      "patterns": ["motor susah hidup", "motor susah dihidupkan", "starter lemah", "distarter cuma bunyi cek cek", "motor tidak mau hidup", "mesin tidak mau nyala", "motor susah distarter pagi hari", "motor tidak bisa distarter", "motor mogok", "starter", "tidak mau nyala", "susah nyala", "busi kotor", "cek cek", "motor susah nyala pagi", "busi basah"],
+      "responses": [
+        "Kemungkinan penyebab, urut dari yang paling sering:\n1. Aki lemah: starter hanya 'cek-cek' atau lampu redup. Coba kick starter; kalau bisa hidup, aki kemungkinan lemah (cas atau ganti aki).\n2. Busi kotor atau basah: lepas busi, kalau hitam atau basah, bersihkan atau ganti.\n3. Bensin habis atau pompa bensin bermasalah (motor injeksi): cek indikator bensin dan dengarkan bunyi pompa saat kunci dinyalakan.\nUrgensi: rendah sampai sedang.",
+        "Motor susah hidup biasanya karena salah satu dari tiga hal:\n- Aki lemah (starter lemah, klakson dan lampu redup). Cek dengan kick starter.\n- Busi kotor atau basah. Lepas dan lihat warnanya.\n- Suplai bensin terganggu (bensin habis, filter, atau pompa).\nCoba cek berurutan dari yang paling mudah. Urgensi: rendah sampai sedang."
+      ]
+    },
+    {
+      "tag": "mati_mendadak",
+      "patterns": ["motor tiba tiba mati", "motor mati sendiri di jalan", "mesin mati pas berhenti", "motor sering mati mendadak", "mesin mati saat lampu merah", "motor mati kalau digas", "matot", "mesin mati", "mati sendiri", "motor mati di jalan", "tiba tiba mati", "mesin mati sendiri"],
+      "responses": [
+        "Motor mati mendadak biasanya karena:\n1. Busi lemah, atau bensin hampir habis atau kotor.\n2. Sekring putus atau konektor listrik longgar (lampu dan klakson ikut mati).\n3. Kiprok (regulator) atau aki bermasalah.\n4. Pada motor injeksi, gangguan sensor (lampu FI menyala).\nCek bensin dan sekring dulu. Jika berulang, bawa ke bengkel. Urgensi: sedang.",
+        "Beberapa penyebab motor mati sendiri: bensin menipis atau kotor, busi aus, sekring putus, atau kiprok dan aki lemah. Kalau lampu FI menyala (motor injeksi), kemungkinan ada gangguan sensor dan perlu dibaca di bengkel. Cek bensin dan sekring dulu. Urgensi: sedang."
+      ]
+    },
+    {
+      "tag": "brebet",
+      "patterns": ["motor brebet", "tarikan berat", "motor ngempos pas digas", "tenaga motor turun", "gas tersendat sendat", "motor brebet pas tanjakan", "mesin tersendat saat digas", "tersendat", "ngempos", "gas tersendat", "tenaga drop", "motor lemas", "tenaga hilang", "kehabisan tenaga", "mesin kehabisan tenaga", "karburator kotor"],
+      "responses": [
+        "Motor brebet atau tarikan berat umumnya karena:\n1. Busi kotor atau aus.\n2. Filter udara kotor.\n3. Karburator atau injektor kotor, atau bensin kotor.\n4. Motor matic: V-belt atau roller CVT aus (terasa berat di tanjakan).\nMulai dari membersihkan atau mengganti busi dan filter udara. Urgensi: sedang.",
+        "Gas yang tersendat bisa disebabkan busi lemah, filter udara tersumbat, saluran bensin atau injektor kotor, atau (pada matic) CVT yang aus. Coba bersihkan busi dan filter udara dulu; jika belum membaik, servis karburator atau injektor. Urgensi: sedang."
+      ]
+    },
+    {
+      "tag": "boros_bensin",
+      "patterns": ["bensin boros", "motor jadi boros", "konsumsi bbm naik", "bensin cepat habis", "kenapa motor boros bensin", "bbm boros", "boros", "konsumsi bensin boros", "tidak irit", "irit bensin"],
+      "responses": [
+        "Penyebab bensin boros yang paling sering:\n1. Tekanan ban kurang.\n2. Filter udara kotor atau busi aus.\n3. Oli sudah lama tidak diganti.\n4. Setelan karburator tidak pas.\nCek tekanan ban dan lakukan servis ringan. Urgensi: rendah.",
+        "Kalau konsumsi bensin naik, cek dulu tekanan ban, filter udara, dan busi. Oli yang sudah lama dan setelan karburator juga bisa membuat boros. Servis ringan biasanya sudah cukup. Urgensi: rendah."
+      ]
+    },
+    {
+      "tag": "rem",
+      "patterns": ["rem blong", "tuas rem dalam", "rem tidak pakem", "rem berdecit", "rem bunyi", "rem terasa kosong", "rem belakang tidak pakem", "rem", "kampas rem", "minyak rem", "rem cakram", "rem depan"],
+      "responses": [
+        "PERINGATAN: rem adalah komponen keselamatan. Jika rem terasa blong, jangan dikendarai dan langsung ke bengkel.\n- Tuas atau pedal dalam atau terasa seperti spons: ada angin di selang atau minyak rem kurang.\n- Berdecit atau menggesek: kampas rem tipis atau kotor.\nCek level minyak rem di tabung. Urgensi: TINGGI.",
+        "Masalah rem harus ditangani segera. Tuas yang dalam atau terasa kosong biasanya tanda angin di selang atau minyak rem kurang; bunyi berdecit biasanya kampas rem tipis atau kotor. Jangan dipakai jika rem blong, langsung ke bengkel. Urgensi: TINGGI."
+      ]
+    },
+    {
+      "tag": "overheat",
+      "patterns": ["mesin panas", "motor overheat", "mesin kepanasan", "motor panas banget", "suhu mesin naik", "radiator panas", "mesin cepat panas", "radiator", "suhu mesin", "mesin terlalu panas", "panas berlebih"],
+      "responses": [
+        "Mesin panas: matikan mesin dan biarkan dingin. Jangan membuka tutup radiator saat masih panas.\nKemungkinan penyebab: oli kurang atau sudah lama; coolant kurang atau kipas radiator mati (motor berradiator); terjebak macet lama atau beban berat.\nCek oli dan coolant setelah mesin dingin. Urgensi: TINGGI.",
+        "Mesin yang terlalu panas bisa merusak komponen dalam mesin. Berhenti, matikan mesin, dan tunggu dingin. Setelah itu cek level oli dan coolant, serta apakah kipas radiator berputar. Jika berulang, bawa ke bengkel. Urgensi: TINGGI."
+      ]
+    },
+    {
+      "tag": "asap_knalpot",
+      "patterns": ["knalpot berasap putih", "asap hitam dari knalpot", "asap biru knalpot", "knalpot ngebul", "asap knalpot tebal", "knalpot mengeluarkan asap", "knalpot", "ngebul", "asap", "asap putih", "asap hitam", "knalpot keluar asap"],
+      "responses": [
+        "Arti warna asap knalpot:\n- Putih tebal terus-menerus: oli atau air masuk ruang bakar (ring piston, seal klep, atau gasket kepala silinder).\n- Hitam: campuran bensin terlalu kaya (filter udara kotor, karburator atau injektor).\n- Biru keabuan: oli ikut terbakar (ring piston aus).\nUrgensi: sedang.",
+        "Asap putih tipis saat mesin baru hidup biasanya uap air dan normal. Asap putih tebal terus-menerus atau biru keabuan menandakan oli ikut terbakar, sedangkan asap hitam berarti bensin terlalu kaya. Bawa ke bengkel untuk dicek. Urgensi: sedang."
+      ]
+    },
+    {
+      "tag": "bunyi_kasar",
+      "patterns": ["ada bunyi aneh di mesin", "bunyi tek tek tek", "bunyi kletek rantai", "bunyi gerung cvt", "suara kasar dari mesin", "bunyi dengung dari roda", "suara aneh dari motor", "bunyi", "kletek", "gerung", "dengung", "kasar", "ada bunyi aneh", "rantai kendor"],
+      "responses": [
+        "Jenis bunyi dan kemungkinan penyebabnya:\n- Kletek dari rantai: rantai kering atau kendor, atau gir aus.\n- Gerung atau gemeretak (matic): V-belt, roller, atau kampas ganda CVT aus.\n- Tek-tek-tek di putaran rendah: celah klep renggang.\n- Dengung dari roda: bearing roda aus.\nUrgensi: sedang.",
+        "Coba kenali asal bunyinya. Dari rantai berarti perlu dilumasi atau disetel; dari CVT (matic) berarti komponen CVT aus; tek-tek-tek dari mesin berarti klep perlu disetel; dengung dari roda berarti bearing aus. Urgensi: sedang."
+      ]
+    },
+    {
+      "tag": "lampu_aki",
+      "patterns": ["lampu redup", "lampu kedip kedip", "klakson lemah", "lampu motor mati", "aki cepat habis", "aki tekor", "lampu depan redup", "aki", "klakson", "lampu depan", "kelistrikan", "aki soak"],
+      "responses": [
+        "Lampu redup atau klakson lemah biasanya karena:\n1. Aki lemah atau sudah tua.\n2. Kiprok (regulator) rusak: lampu terang-redup mengikuti putaran gas.\n3. Bohlam, sekring, atau konektor bermasalah.\nCek aki dan sekring dulu. Urgensi: rendah sampai sedang.",
+        "Masalah kelistrikan paling sering berasal dari aki yang lemah. Kalau lampu terang dan redup mengikuti putaran gas, curigai kiprok. Kalau hanya satu lampu mati, cek bohlam, sekring, atau konektornya. Urgensi: rendah sampai sedang."
+      ]
+    },
+    {
+      "tag": "getaran",
+      "patterns": ["motor getar saat ngebut", "setang goyang", "motor oleng", "getaran di stang", "motor goyang kecepatan tinggi", "stang bergetar", "getar", "goyang", "vibrasi", "stang"],
+      "responses": [
+        "Getaran atau setang goyang bisa karena:\n1. Ban tidak seimbang, kurang angin, atau baru ditambal.\n2. Velg peang setelah terbentur.\n3. Bearing roda atau komstir longgar.\n4. Shockbreaker bocor.\nKurangi kecepatan dan segera periksa di bengkel karena bisa membahayakan. Urgensi: TINGGI.",
+        "Motor yang oleng atau bergetar perlu segera dicek. Mulai dari tekanan ban dan kondisi velg; jika normal, kemungkinan bearing roda atau komstir longgar, atau shockbreaker bocor. Hindari kecepatan tinggi sampai diperiksa. Urgensi: TINGGI."
+      ]
+    },
+    {
+      "tag": "ganti_oli",
+      "patterns": ["kapan ganti oli", "oli berapa km", "jadwal ganti oli", "interval ganti oli", "oli motor kapan diganti", "berapa lama oli diganti", "oli", "ganti oli", "oli mesin", "km oli"],
+      "responses": [
+        "Umumnya oli mesin diganti tiap 2.000 sampai 4.000 km atau 2 sampai 3 bulan, tergantung jenis oli dan pemakaian. Ikuti anjuran di buku manual motormu.",
+        "Interval ganti oli bergantung pada jenis oli dan kondisi pakai. Patokan umumnya 2.000 sampai 4.000 km atau 2 sampai 3 bulan, mana yang tercapai lebih dulu. Cek buku manual untuk angka pastinya."
+      ]
+    },
+    {
+      "tag": "jadwal_servis",
+      "patterns": ["servis rutin kapan", "jadwal servis motor", "ganti busi berapa km", "kapan ganti filter udara", "servis berkala", "kapan harus servis", "servis", "ganti busi", "servis rutin", "filter udara", "kapan ganti busi", "busi diganti kapan"],
+      "responses": [
+        "Interval servis berbeda tiap motor, jadi acuan utamanya buku manual. Secara umum busi, filter udara, rantai, dan V-belt (matic) perlu dicek berkala setiap beberapa ribu kilometer.",
+        "Servis berkala sebaiknya mengikuti buku manual motormu. Yang biasa dicek: oli, busi, filter udara, rem, rantai, dan V-belt (matic). Jangan menunggu rusak dulu."
+      ]
+    },
+    {
+      "tag": "tekanan_ban",
+      "patterns": ["tekanan ban berapa", "angin ban yang pas", "ban kurang angin", "psi ban motor", "berapa tekanan angin ban", "isi angin ban berapa", "ban", "angin ban", "tapak ban", "tekanan ban", "ban bocor"],
+      "responses": [
+        "Tekanan ban yang pas tertera di label pada swingarm atau di buku manual, dan bisa berbeda untuk ban depan dan belakang. Cek rutin sekitar 1 sampai 2 minggu sekali saat ban dingin.",
+        "Lihat label tekanan ban di swingarm atau buku manual motormu. Ban yang kurang angin membuat motor berat dan boros, sedangkan terlalu keras mengurangi cengkeraman. Cek berkala saat ban dingin."
+      ]
+    }
+  ]
+}

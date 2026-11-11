@@ -1,0 +1,19 @@
+# Lingkungan virtual dan cache Python.
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Database lokal dan file environment.
+chat_history.db
+*.db
+.env
+
+# File editor dan sistem operasi.
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Alat bantu Command Code (taste, plan, cache sesi).
+.commandcode/

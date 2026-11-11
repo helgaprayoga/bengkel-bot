@@ -1,0 +1,754 @@
+/* ============================================================
+   Token desain
+   ============================================================ */
+:root {
+  --bg: #eef3fa;
+  --surface: #ffffff;
+  --surface-2: #f4f8fd;
+  --ink: #0e2340;
+  --muted: #5b7089;
+  --line: #d9e4f2;
+  --brand: #1d4ed8;
+  --brand-strong: #1e3a8a;
+  --brand-soft: #e7f0ff;
+  --dark: #0f2744;
+  --danger: #b42318;
+  --danger-soft: #fee4e2;
+  --success: #067647;
+  --radius: 18px;
+  --radius-sm: 12px;
+  --shadow: 0 24px 60px rgba(15, 39, 68, .12);
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+}
+
+/* ============================================================
+   Dasar halaman
+   ============================================================ */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(37, 99, 235, .10), transparent 34rem),
+    radial-gradient(circle at 100% 100%, rgba(96, 165, 250, .12), transparent 30rem),
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  line-height: 1.55;
+}
+
+h1, h2, p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: .25rem;
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  letter-spacing: -.02em;
+}
+
+h2 {
+  margin-bottom: .35rem;
+  font-size: 1.15rem;
+  letter-spacing: -.01em;
+}
+
+code {
+  padding: .15rem .4rem;
+  border-radius: 6px;
+  background: rgba(23, 32, 42, .07);
+  font-family: var(--mono);
+  font-size: .9em;
+}
+
+a {
+  color: var(--brand);
+}
+
+/* Fokus keyboard harus selalu jelas. */
+:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   Halaman chat
+   ============================================================ */
+.halaman-chat {
+  display: grid;
+  min-height: 0;
+  height: 100vh;
+  height: 100dvh;
+  place-items: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.chat-card {
+  display: flex;
+  width: min(820px, 100%);
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .05), transparent 45%),
+    var(--dark);
+  color: #fff;
+}
+
+.chat-header h1 {
+  margin-bottom: 0;
+  color: #fff;
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+  letter-spacing: -.01em;
+}
+
+.avatar {
+  display: grid;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 11px;
+  background: linear-gradient(160deg, #3b82f6, #1d4ed8);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16);
+}
+
+.avatar svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+
+.judul {
+  min-width: 0;
+  flex: 1;
+}
+
+.judul p {
+  margin-bottom: 0;
+  color: #b9cbe3;
+  font-size: .72rem;
+  line-height: 1.25;
+}
+
+.tombol-kecil {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: .84rem;
+  font-weight: 650;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .15s ease;
+}
+
+.tombol-kecil:hover {
+  border-color: #b9cce4;
+  background: var(--surface-2);
+}
+
+.tombol-kecil:active {
+  transform: translateY(1px);
+}
+
+.chat-header .tombol-kecil {
+  min-height: 30px;
+  padding: 5px 12px;
+  border-color: rgba(255, 255, 255, .2);
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  font-size: .78rem;
+}
+
+.chat-header .tombol-kecil:hover {
+  background: rgba(255, 255, 255, .16);
+}
+
+.disclaimer {
+  margin: 0;
+  padding: 8px 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--brand-soft);
+  color: #1e3a8a;
+  font-size: .78rem;
+}
+
+/* Area pesan dibuat scroll sendiri agar halaman tidak memanjang tanpa batas. */
+.messages {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  padding: 24px;
+  scroll-behavior: smooth;
+}
+
+/* Bagian tetap kartu: tidak menyusut agar hanya daftar pesan yang scroll. */
+.chat-header,
+.disclaimer,
+.status,
+.suggestions,
+.chat-form,
+.belajar {
+  flex: 0 0 auto;
+}
+
+.pesan {
+  display: flex;
+  max-width: 84%;
+  flex-direction: column;
+  gap: 6px;
+  animation: muncul .18s ease-out both;
+}
+
+.pesan-user {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.pesan-bot {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.bubble {
+  padding: 12px 15px;
+  border-radius: 16px;
+  font-size: .94rem;
+  overflow-wrap: anywhere;
+  /* Menjaga baris baru dan daftar bernomor dari engine tetap tampil rapi. */
+  white-space: pre-wrap;
+}
+
+.pesan-bot .bubble {
+  border: 1px solid var(--line);
+  border-top-left-radius: 5px;
+  background: var(--surface-2);
+}
+
+.pesan-user .bubble {
+  border-top-right-radius: 5px;
+  background: var(--dark);
+  color: #fff;
+}
+
+.meta {
+  display: none;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--muted);
+  font-size: .74rem;
+}
+
+/* Mode belajar menampilkan metadata intent dan skor di bawah bubble. */
+.messages.mode-belajar .meta {
+  display: flex;
+}
+
+.meta span {
+  padding: 2px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.pesan-bot.mengetik .bubble {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  min-width: 58px;
+}
+
+.titik {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+  animation: ketik 1s infinite ease-in-out;
+}
+
+.titik:nth-child(2) {
+  animation-delay: .15s;
+}
+
+.titik:nth-child(3) {
+  animation-delay: .3s;
+}
+
+.status {
+  min-height: 1.25rem;
+  margin: 0;
+  padding: 0 24px;
+  color: var(--muted);
+  font-size: .8rem;
+}
+
+.status-galat {
+  color: var(--danger);
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 24px 4px;
+}
+
+.chip {
+  padding: 7px 12px;
+  border: 1px solid #c7dbf7;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font: inherit;
+  font-size: .82rem;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+
+.chip:hover {
+  border-color: #93c5fd;
+  background: #e0ecff;
+}
+
+.chat-form {
+  display: flex;
+  gap: 10px;
+  padding: 14px 24px 12px;
+}
+
+.chat-form input {
+  min-width: 0;
+  flex: 1;
+  padding: 13px 15px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+
+.chat-form input:focus {
+  border-color: #2563eb;
+  outline: 3px solid rgba(37, 99, 235, .18);
+}
+
+.chat-form button {
+  padding: 0 20px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--brand);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s ease, opacity .15s ease;
+}
+
+.chat-form button:hover {
+  background: var(--brand-strong);
+}
+
+.chat-form button:disabled,
+.chat-form input:disabled {
+  cursor: not-allowed;
+  opacity: .55;
+}
+
+.belajar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px 20px;
+  color: var(--muted);
+  font-size: .8rem;
+  user-select: none;
+}
+
+.belajar input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--brand);
+}
+
+/* ============================================================
+   Halaman admin
+   ============================================================ */
+.halaman-admin {
+  padding: 32px 20px 48px;
+}
+
+.admin {
+  width: min(1080px, 100%);
+  margin: 0 auto;
+}
+
+.admin-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.eyebrow {
+  margin-bottom: 4px;
+  color: var(--brand);
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.subjudul {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.kartu-ringkas {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.kartu {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 8px 20px rgba(23, 32, 42, .05);
+}
+
+.angka {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--dark);
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+}
+
+.label {
+  color: var(--muted);
+  font-size: .78rem;
+}
+
+.panel {
+  margin-bottom: 18px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 8px 20px rgba(23, 32, 42, .05);
+}
+
+.panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.petunjuk {
+  margin-bottom: 14px;
+  color: var(--muted);
+  font-size: .84rem;
+}
+
+.kosong {
+  margin-bottom: 0;
+  padding: 22px;
+  border: 1px dashed #c8d8ea;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--muted);
+  text-align: center;
+}
+
+.tabel-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+
+th, td {
+  padding: 11px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+tbody tr:hover {
+  background: #f3f8ff;
+}
+
+.angka-kolom {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.proporsi {
+  display: flex;
+  min-width: 160px;
+  align-items: center;
+  gap: 10px;
+}
+
+.proporsi-teks {
+  flex: 0 0 46px;
+  color: var(--muted);
+  font-size: .78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.jalur {
+  display: block;
+  width: 100%;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e4edf8;
+}
+
+.isi {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #60a5fa, var(--brand));
+}
+
+.isi.tak-dikenali {
+  background: linear-gradient(90deg, #f87171, var(--danger));
+}
+
+.admin-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 4px;
+}
+
+/* ============================================================
+   Halaman galat
+   ============================================================ */
+.halaman-galat {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+}
+
+.galat {
+  width: min(520px, 100%);
+  padding: 36px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.kode-galat {
+  margin-bottom: 4px;
+  color: var(--brand);
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -.06em;
+  line-height: 1;
+}
+
+.galat p {
+  color: var(--muted);
+}
+
+.galat .tombol-kecil {
+  margin-top: 10px;
+}
+
+/* ============================================================
+   Animasi
+   ============================================================ */
+@keyframes muncul {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ketik {
+  0%, 80%, 100% {
+    opacity: .35;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+/* ============================================================
+   Responsif
+   ============================================================ */
+@media (max-width: 760px) {
+  .halaman-chat {
+    padding: 0;
+  }
+
+  .chat-card {
+    height: 100%;
+    min-height: 0;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .chat-header {
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 10px 16px;
+  }
+
+  .chat-header .tombol-kecil {
+    margin-left: auto;
+  }
+
+  .disclaimer,
+  .status {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .messages {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+    padding: 18px;
+  }
+
+  .pesan {
+    max-width: 92%;
+  }
+
+  .suggestions,
+  .chat-form,
+  .belajar {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .halaman-admin {
+    padding: 22px 14px 36px;
+  }
+
+  .admin-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .kartu-ringkas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .panel {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 460px) {
+  .kartu-ringkas {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-form {
+    flex-direction: column;
+  }
+
+  .chat-form button {
+    min-height: 46px;
+  }
+}
+
+/* Layar pendek: rapatkan bagian tetap agar ruang pesan tetap lega. */
+@media (max-height: 620px) {
+  .disclaimer {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .suggestions {
+    padding-top: 6px;
+    padding-bottom: 4px;
+  }
+
+  .chat-form {
+    padding-top: 8px;
+    padding-bottom: 6px;
+  }
+
+  .belajar {
+    padding-bottom: 10px;
+  }
+}
+
+/* Hormati preferensi pengguna yang tidak ingin animasi. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
